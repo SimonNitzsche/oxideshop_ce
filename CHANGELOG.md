@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - Migrate from PHP 7.4snapshot to 7.4 in travis [PR-745](https://github.com/OXID-eSales/oxideshop_ce/pull/745)
+- Renamed constants in `OxidEsales\EshopCommunity\Setup\Database`:
+`ERROR_MYSQL_VERSION_DOES_NOT_FIT_REQUIREMENTS` to `ERROR_CODE_DBMS_NOT_COMPATIBLE`
+`ERROR_MYSQL_VERSION_DOES_NOT_FIT_RECOMMENDATIONS` to `ERROR_CODE_DBMS_NOT_RECOMMENDED`
+- Renamed Setup translation keys and changed translation messages:
+`ERROR_MYSQL_VERSION_DOES_NOT_FIT_REQUIREMENTS` to `ERROR_DBMS_VERSION_DOES_NOT_FIT_REQUIREMENTS`
+`ERROR_MYSQL_VERSION_DOES_NOT_FIT_RECOMMENDATIONS` to `ERROR_MYSQL_56_NOT_RECOMMENDED`
 
 ### Fixed
 - Fixed missed deprecated getConfig and getSession method usages [PR-721](https://github.com/OXID-eSales/oxideshop_ce/pull/721)
@@ -30,6 +36,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - `OxidEsales\Eshop\Application\Controller\PaymentController::$_aCreditYears`
 - `OxidEsales\Eshop\Application\Controller\PaymentController::getCreditYears()`
 - `OxidEsales\Eshop\Application\Controller\PaymentController::_filterDynData()`
+- `OxidEsales\EshopCommunity\Core\SystemRequirements::checkMysqlVersion()`
 - `OxidEsales\Eshop\Application\Controller\PaymentController::$_blDynDataFiltered`
 - Language variables:
     - `CREDITCARD`
@@ -51,6 +58,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
         - `Conf`
     - Removed settings:
         - `sConfigKey` from `config.inc.php`
+- Setup method: `OxidEsales\EshopCommunity\Setup\Database::connectDb()`
 
 ## [6.5.1] - Unreleased
 
