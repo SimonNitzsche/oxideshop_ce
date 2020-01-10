@@ -826,7 +826,7 @@ class CreatingItemsAdminTest extends AdminTestCase
         $this->type("voucherNr", "222");
         $this->type("voucherAmount", "5");
         $this->clickAndWaitFrame("//input[@name='save' and @value='Generate']");
-        $this->frame("dynexport_do", false, false);
+        $this->frame("dynexport_do", true, false);
         $this->waitForText("Coupons generation completed");
         $this->checkForErrors();
         $this->assertEquals("5", $this->getText("//tr[2]/td[2]"));
@@ -836,7 +836,7 @@ class CreatingItemsAdminTest extends AdminTestCase
         $this->checkForErrors();
         $this->clickAndWaitFrame("//input[@name='save' and @value='Export']");
         $this->frame("dynexport_do", false, false);
-        $this->waitForText("Coupons export completed");
+        $this->waitForText("Coupons export completed", false, 20);
         //$this->checkForErrors();
         $this->frame("edit");
         $this->checkForErrors();

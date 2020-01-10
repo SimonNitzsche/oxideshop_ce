@@ -1255,19 +1255,22 @@ class AjaxFunctionalityAdminTest extends AdminTestCase
         $this->assertElementText("10016", "//div[@id='container1_c']/table/tbody[2]/tr[7]/td[1]");
 
         // check sort
-        $this->click("container1_btn");
+        $this->clickAndWait("container1_btn");
+        $this->usePopUp("//div[@id='container2_c']/table/tbody[2]/tr[1]/td[3]");
         $this->assertElementText("0", "//div[@id='container2_c']/table/tbody[2]/tr[1]/td[3]");
         $this->assertElementText("0", "//div[@id='container2_c']/table/tbody[2]/tr[7]/td[3]");
-        $this->click("//div[@id='container2_c']/table/tbody[2]/tr[7]/td[1]");
-        $this->waitForItemAppear("orderup");
-        $this->click("orderup");
+        $this->clickAndWait("//div[@id='container2_c']/table/tbody[2]/tr[7]/td[1]");
+        $this->usePopUp("orderup");
+        $this->clickAndWait("orderup");
+        $this->usePopUp("//div[@id='container2_c']/table/tbody[2]/tr[1]/td[3]");
         $this->assertElementText("0", "//div[@id='container2_c']/table/tbody[2]/tr[1]/td[3]");
         $this->assertElementText("6", "//div[@id='container2_c']/table/tbody[2]/tr[7]/td[3]");
         $firstRow = $this->getText("//div[@id='container2_c']/table/tbody[2]/tr[1]/td[1]");
         $secondRow = $this->getText("//div[@id='container2_c']/table/tbody[2]/tr[2]/td[1]");
-        $this->click("//div[@id='container2_c']/table/tbody[2]/tr[1]/td[1]");
-        $this->waitForItemAppear("orderdown");
-        $this->click("orderdown");
+        $this->clickAndWait("//div[@id='container2_c']/table/tbody[2]/tr[1]/td[1]");
+        $this->usePopUp("orderdown");
+        $this->clickAndWait("orderdown");
+        $this->usePopUp("//div[@id='container2_c']/table/tbody[2]/tr[1]/td[1]");
         $this->assertElementText($secondRow, "//div[@id='container2_c']/table/tbody[2]/tr[1]/td[1]");
         $this->assertElementText($firstRow, "//div[@id='container2_c']/table/tbody[2]/tr[2]/td[1]");
         $this->assertElementText("0", "//div[@id='container2_c']/table/tbody[2]/tr[1]/td[3]");
@@ -1338,11 +1341,12 @@ class AjaxFunctionalityAdminTest extends AdminTestCase
         $this->assertElementNotPresent("//div[@id='container1_c']/table/tbody[2]/tr[3]");
         //assignAll btn
         $this->click("container1_btn");
+        $this->usePopUp("//div[@id='container2_c']/table/tbody[2]/tr[1]/td[1]");
         $this->assertElementText("Test category 0 [DE] šÄßüл", "//div[@id='container2_c']/table/tbody[2]/tr[1]/td[1]");
         $this->assertElementText("Test category 1 [DE] šÄßüл", "//div[@id='container2_c']/table/tbody[2]/tr[2]/td[1]");
         //sorting attributes
         $this->click("//div[@id='container2_c']/table/tbody[2]/tr[1]/td[1]");
-        $this->waitForItemAppear("//div[@id='container3_c']/table/tbody[2]/tr[1]/td[1]");
+        $this->usePopUp("//div[@id='container3_c']/table/tbody[2]/tr[1]/td[1]");
         $this->assertElementText("Test attribute 1 [DE] šÄßüл", "//div[@id='container3_c']/table/tbody[2]/tr[1]/td[1]");
         $this->assertElementText("1", "//div[@id='container3_c']/table/tbody[2]/tr[1]/td[2]");
         $this->assertElementText("Test attribute 3 [DE] šÄßüл", "//div[@id='container3_c']/table/tbody[2]/tr[2]/td[1]");
@@ -1352,15 +1356,17 @@ class AjaxFunctionalityAdminTest extends AdminTestCase
         $this->assertElementText("1 [DE] Attribute šÄßüл", "//div[@id='container3_c']/table/tbody[2]/tr[4]/td[1]");
         $this->assertElementText("4", "//div[@id='container3_c']/table/tbody[2]/tr[4]/td[2]");
         $this->click("//div[@id='container3_c']/table/tbody[2]/tr[2]/td[1]");
-        $this->waitForItemAppear("orderup");
-        $this->click("orderup");
+        $this->usePopUp("orderup");
+        $this->clickAndWait("orderup");
+        $this->usePopUp("//div[@id='container3_c']/table/tbody[2]/tr[1]/td[1]");
         $this->assertElementText("Test attribute 3 [DE] šÄßüл", "//div[@id='container3_c']/table/tbody[2]/tr[1]/td[1]");
         $this->assertElementText("Test attribute 1 [DE] šÄßüл", "//div[@id='container3_c']/table/tbody[2]/tr[2]/td[1]");
         $this->assertElementText("Test attribute 2 [DE] šÄßüл", "//div[@id='container3_c']/table/tbody[2]/tr[3]/td[1]");
         $this->assertElementText("1 [DE] Attribute šÄßüл", "//div[@id='container3_c']/table/tbody[2]/tr[4]/td[1]");
         $this->click("//div[@id='container3_c']/table/tbody[2]/tr[1]/td[1]");
-        $this->waitForItemAppear("orderdown");
+        $this->usePopUp("orderdown");
         $this->click("orderdown");
+        $this->usePopUp("//div[@id='container3_c']/table/tbody[2]/tr[2]/td[1]");
         $this->assertElementText("Test attribute 3 [DE] šÄßüл", "//div[@id='container3_c']/table/tbody[2]/tr[2]/td[1]");
         $this->assertElementText("Test attribute 1 [DE] šÄßüл", "//div[@id='container3_c']/table/tbody[2]/tr[1]/td[1]");
         $this->assertElementText("Test attribute 3 [DE] šÄßüл", "//div[@id='container3_c']/table/tbody[2]/tr[2]/td[1]");
@@ -1376,6 +1382,7 @@ class AjaxFunctionalityAdminTest extends AdminTestCase
         $this->assertElementText("Test category 1 [DE] šÄßüл", "//div[@id='container2_c']/table/tbody[2]/tr[2]/td[1]");
         //unassignAll btn
         $this->click("container2_btn");
+        $this->usePopUp("//div[@id='container1_c']/table/tbody[2]/tr[1]/td[1]");
         $this->assertElementText("Test category 0 [DE] šÄßüл", "//div[@id='container1_c']/table/tbody[2]/tr[1]/td[1]");
         $this->assertElementText("Test category 1 [DE] šÄßüл", "//div[@id='container1_c']/table/tbody[2]/tr[2]/td[1]");
         $this->close();
@@ -1595,26 +1602,29 @@ class AjaxFunctionalityAdminTest extends AdminTestCase
         $this->assertElementText("15 DE product šÄßüл", "//div[@id='container1_c']/table/tbody[2]/tr[8]/td[2]");
         //assignAll btn
         $this->click("container1_btn");
+        $this->usePopUp("//div[@id='container2_c']/table/tbody[2]/tr[1]/td[1]");
         $this->assertElementText("1001", "//div[@id='container2_c']/table/tbody[2]/tr[1]/td[1]");
         $this->assertElementText("10016", "//div[@id='container2_c']/table/tbody[2]/tr[8]/td[1]");
         //sorting selection lists for product
         $this->click("//div[@id='container2_c']/table/tbody[2]/tr[1]/td[1]");
-        $this->waitForItemAppear("//div[@id='container3_c']/table/tbody[2]/tr[1]/td[1]");
+        $this->usePopUp("//div[@id='container3_c']/table/tbody[2]/tr[1]/td[1]");
         $this->assertElementText("test selection list [DE] šÄßüл", "//div[@id='container3_c']/table/tbody[2]/tr[1]/td[1]");
         $this->assertElementText("0", "//div[@id='container3_c']/table/tbody[2]/tr[1]/td[2]");
         $this->assertElementText("1 [DE] sellist šÄßüл", "//div[@id='container3_c']/table/tbody[2]/tr[2]/td[1]");
         $this->assertElementText("1", "//div[@id='container3_c']/table/tbody[2]/tr[2]/td[2]");
         $this->click("//div[@id='container3_c']/table/tbody[2]/tr[1]/td[1]");
-        $this->waitForItemAppear("orderdown");
-        $this->click("orderdown");
+        $this->usePopUp("orderdown");
+        $this->clickAndWait("orderdown");
+        $this->usePopUp("//div[@id='container3_c']/table/tbody[2]/tr[1]/td[1]");
         $this->assertElementText("1 [DE] sellist šÄßüл", "//div[@id='container3_c']/table/tbody[2]/tr[1]/td[1]");
         $this->assertElementText("1 [DE] sellist šÄßüл", "//div[@id='container3_c']/table/tbody[2]/tr[1]/td[1]");
         $this->assertElementText("0", "//div[@id='container3_c']/table/tbody[2]/tr[1]/td[2]");
         $this->assertElementText("test selection list [DE] šÄßüл", "//div[@id='container3_c']/table/tbody[2]/tr[2]/td[1]");
         $this->assertElementText("1", "//div[@id='container3_c']/table/tbody[2]/tr[2]/td[2]");
         $this->click("//div[@id='container3_c']/table/tbody[2]/tr[2]/td[1]");
-        $this->waitForItemAppear("orderup");
+        $this->usePopUp("orderup");
         $this->click("orderup");
+        $this->usePopUp("//div[@id='container3_c']/table/tbody[2]/tr[1]/td[1]");
         $this->assertElementText("test selection list [DE] šÄßüл", "//div[@id='container3_c']/table/tbody[2]/tr[1]/td[1]");
         $this->assertElementText("test selection list [DE] šÄßüл", "//div[@id='container3_c']/table/tbody[2]/tr[1]/td[1]");
         $this->assertElementText("0", "//div[@id='container3_c']/table/tbody[2]/tr[1]/td[2]");
@@ -1796,6 +1806,7 @@ class AjaxFunctionalityAdminTest extends AdminTestCase
         $this->assertElementText("10 EN product šÄßüл", "//div[@id='container1_c']/table/tbody[2]/tr[19]/td[2]");
         //assignAll btn
         $this->click("container1_btn");
+        $this->usePopUp("//div[@id='container2_c']/table/tbody[2]/tr[3]/td[1]");
         $this->assertElementText("10010", "//div[@id='container2_c']/table/tbody[2]/tr[3]/td[1]");
         $this->assertElementText("10016", "//div[@id='container2_c']/table/tbody[2]/tr[21]/td[1]");
         //sorting selection lists for product
@@ -1803,15 +1814,17 @@ class AjaxFunctionalityAdminTest extends AdminTestCase
         $this->assertElementText("10011", "//div[@id='container2_c']/table/tbody[2]/tr[4]/td[1]");
         $this->assertElementText("10012", "//div[@id='container2_c']/table/tbody[2]/tr[5]/td[1]");
         $this->click("//div[@id='container2_c']/table/tbody[2]/tr[4]/td[1]");
-        $this->waitForItemAppear("orderdown");
-        $this->click("orderdown");
+        $this->usePopUp("orderdown");
+        $this->clickAndWait("orderdown");
+        $this->usePopUp("//div[@id='container2_c']/table/tbody[2]/tr[5]/td[1]");
         $this->assertElementText("10011", "//div[@id='container2_c']/table/tbody[2]/tr[5]/td[1]");
         $this->assertElementText("10010", "//div[@id='container2_c']/table/tbody[2]/tr[3]/td[1]");
         $this->assertElementText("10012", "//div[@id='container2_c']/table/tbody[2]/tr[4]/td[1]");
         $this->assertElementText("10011", "//div[@id='container2_c']/table/tbody[2]/tr[5]/td[1]");
         $this->click("//div[@id='container2_c']/table/tbody[2]/tr[4]/td[1]");
-        $this->waitForItemAppear("orderup");
+        $this->usePopUp("orderup");
         $this->click("orderup");
+        $this->usePopUp("//div[@id='container2_c']/table/tbody[2]/tr[3]/td[1]");
         $this->assertElementText("10012", "//div[@id='container2_c']/table/tbody[2]/tr[3]/td[1]");
         $this->assertElementText("10010", "//div[@id='container2_c']/table/tbody[2]/tr[4]/td[1]");
         $this->assertElementText("10011", "//div[@id='container2_c']/table/tbody[2]/tr[5]/td[1]");
@@ -1833,6 +1846,7 @@ class AjaxFunctionalityAdminTest extends AdminTestCase
         $this->assertElementText("10010", "//div[@id='container2_c']/table/tbody[2]/tr[21]/td[1]");
         //unassignAll btn
         $this->click("container2_btn");
+        $this->usePopUp("//div[@id='container1_c']/table/tbody[2]/tr[1]/td[1]");
         $this->assertElementText("1001", "//div[@id='container1_c']/table/tbody[2]/tr[1]/td[1]");
         $this->assertElementText("10016", "//div[@id='container1_c']/table/tbody[2]/tr[20]/td[1]");
         $this->assertElementText("10 EN product šÄßüл", "//div[@id='container1_c']/table/tbody[2]/tr[20]/td[2]");
