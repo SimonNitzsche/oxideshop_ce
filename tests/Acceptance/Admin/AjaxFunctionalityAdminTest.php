@@ -1261,7 +1261,7 @@ class AjaxFunctionalityAdminTest extends AdminTestCase
         $this->assertElementText("0", "//div[@id='container2_c']/table/tbody[2]/tr[7]/td[3]");
         $this->clickAndWait("//div[@id='container2_c']/table/tbody[2]/tr[7]/td[1]");
         $this->usePopUp("orderup");
-        $this->clickAndWait("orderup");
+        $this->clickAndWait("orderup"); sleep(5);
         $this->usePopUp("//div[@id='container2_c']/table/tbody[2]/tr[1]/td[3]");
         $this->assertElementText("0", "//div[@id='container2_c']/table/tbody[2]/tr[1]/td[3]");
         $this->assertElementText("6", "//div[@id='container2_c']/table/tbody[2]/tr[7]/td[3]");
