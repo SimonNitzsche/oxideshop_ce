@@ -78,9 +78,6 @@ class ShopSetUpTest extends FrontendTestCase
     /**
      * Tests installation of new shop version (setup).
      * Test chooses demo data if possible test data otherwise.
-     * In CI:
-     * - nightlies run with demo data
-     * - dailies run without demo data
      *
      * @group main
      */
@@ -89,6 +86,10 @@ class ShopSetUpTest extends FrontendTestCase
         $this->clearDatabase();
 
         $this->goToSetup();
+
+        if (!$this->checkDemodataPackageExists()) {
+            $this->markTestSkipped('test needs demo_data package to work');
+        }
 
         // Step 1
         $this->assertTextPresent("Welcome to OXID eShop installation wizard");

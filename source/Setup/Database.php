@@ -351,6 +351,11 @@ class Database extends Core
                 $aRow['oxvarvalue'] = unserialize($aRow['oxvarvalue']);
             }
             $aLanguageParams = $aRow['oxvarvalue'];
+
+            if (!is_array($aLanguageParams)) {
+                throw new Exception("aLanguageParams only supports array");
+            }
+
             foreach ($aLanguageParams as $sKey => $aLang) {
                 $aLanguageParams[$sKey]["active"] = "0";
             }
