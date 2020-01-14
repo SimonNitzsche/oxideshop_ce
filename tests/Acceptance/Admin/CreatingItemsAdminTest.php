@@ -829,8 +829,8 @@ class CreatingItemsAdminTest extends AdminTestCase
         $this->frame("dynexport_do", false, false);
         $this->waitForText("Coupons generation completed");
         $this->checkForErrors();
-        $this->assertEquals("5", $this->getText("//tr[2]/td[2]"));
-        $this->assertEquals("5", $this->getText("//tr[3]/td[2]"));
+        $this->assertEquals("500", $this->getText("//tr[2]/td[2]"));
+        $this->assertEquals("500", $this->getText("//tr[3]/td[2]"));
         $this->assertEquals("0", $this->getText("//tr[4]/td[2]"));
         $this->frame("edit");
         $this->checkForErrors();
