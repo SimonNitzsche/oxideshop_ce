@@ -827,7 +827,7 @@ class CreatingItemsAdminTest extends AdminTestCase
         $this->type("voucherNr", "222");
         $this->type("voucherAmount", "500");
         $this->clickAndWaitFrame("//input[@name='save' and @value='Generate']", 'dynexport_do');
-        $this->frame("edit");
+        $this->frame("dynexport_do", false, false);
 
         Registry::getLogger()->error($this->getHtmlSource());
 
