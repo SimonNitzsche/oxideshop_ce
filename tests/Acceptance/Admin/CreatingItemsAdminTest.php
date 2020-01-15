@@ -7,7 +7,6 @@
 
 namespace OxidEsales\EshopCommunity\Tests\Acceptance\Admin;
 
-use OxidEsales\EshopCommunity\Core\Registry;
 use OxidEsales\EshopCommunity\Core\ShopIdCalculator;
 use OxidEsales\EshopCommunity\Tests\Acceptance\AdminTestCase;
 
@@ -830,8 +829,6 @@ class CreatingItemsAdminTest extends AdminTestCase
         sleep(5);
         $this->frame("dynexport_do", false, false);
 
-        Registry::getLogger()->error($this->getHtmlSource());
-
         $this->waitForText("Coupons generation completed",false, 20);
         $this->checkForErrors();
         $this->assertEquals("5", $this->getText("//tr[2]/td[2]"));
@@ -839,7 +836,8 @@ class CreatingItemsAdminTest extends AdminTestCase
         $this->assertEquals("0", $this->getText("//tr[4]/td[2]"));
         $this->frame("edit");
         $this->checkForErrors();
-        $this->clickAndWaitFrame("//input[@name='save' and @value='Export']");
+        $this->clickAndWaitFrame("//input[@name='save' and @value='Export']", 'dynexport_do');
+        sleep(5);
         $this->frame("dynexport_do", false, false);
         $this->waitForText("Coupons export completed", false, 20);
         //$this->checkForErrors();
