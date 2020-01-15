@@ -825,16 +825,17 @@ class CreatingItemsAdminTest extends AdminTestCase
         $this->assertEquals("", $this->getValue("voucherNr"));
         $this->assertEquals("0", $this->getValue("voucherAmount"));
         $this->type("voucherNr", "222");
-        $this->type("voucherAmount", "500");
-        $this->clickAndWaitFrame("//input[@name='save' and @value='Generate']", 'dynexport_do');
+        $this->type("voucherAmount", "5");
+        $this->click("//input[@name='save' and @value='Generate']", 'dynexport_do');
+        sleep(5);
         $this->frame("dynexport_do", false, false);
 
         Registry::getLogger()->error($this->getHtmlSource());
 
-        $this->assertTextPresent("Coupons generation completed");
+        $this->waitForText("Coupons generation completed",false, 20);
         $this->checkForErrors();
-        $this->assertEquals("500", $this->getText("//tr[2]/td[2]"));
-        $this->assertEquals("500", $this->getText("//tr[3]/td[2]"));
+        $this->assertEquals("5", $this->getText("//tr[2]/td[2]"));
+        $this->assertEquals("5", $this->getText("//tr[3]/td[2]"));
         $this->assertEquals("0", $this->getText("//tr[4]/td[2]"));
         $this->frame("edit");
         $this->checkForErrors();
