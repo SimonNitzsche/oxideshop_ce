@@ -7,6 +7,7 @@
 
 namespace OxidEsales\EshopCommunity\Tests\Acceptance\Admin;
 
+use OxidEsales\EshopCommunity\Core\Registry;
 use OxidEsales\EshopCommunity\Core\ShopIdCalculator;
 use OxidEsales\EshopCommunity\Tests\Acceptance\AdminTestCase;
 
@@ -827,6 +828,9 @@ class CreatingItemsAdminTest extends AdminTestCase
         $this->type("voucherAmount", "500");
         $this->clickAndWaitFrame("//input[@name='save' and @value='Generate']", 'dynexport_do');
         $this->frame("edit");
+
+        Registry::getLogger()->error($this->getHtmlSource());
+
         $this->assertTextPresent("Coupons generation completed");
         $this->checkForErrors();
         $this->assertEquals("500", $this->getText("//tr[2]/td[2]"));
