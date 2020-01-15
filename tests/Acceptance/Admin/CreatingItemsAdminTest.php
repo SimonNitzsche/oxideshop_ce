@@ -836,7 +836,7 @@ class CreatingItemsAdminTest extends AdminTestCase
         $this->assertEquals("0", $this->getText("//tr[4]/td[2]"));
         $this->frame("edit");
         $this->checkForErrors();
-        $this->clickAndWaitFrame("//input[@name='save' and @value='Export']", 'dynexport_do');
+        $this->click("//input[@name='save' and @value='Export']", 'dynexport_do');
         sleep(5);
         $this->frame("dynexport_do", false, false);
         $this->waitForText("Coupons export completed", false, 20);
