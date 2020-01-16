@@ -839,6 +839,9 @@ class CreatingItemsAdminTest extends AdminTestCase
         $this->clickAndWaitFrame("//input[@name='save' and @value='Export']", 'dynexport_do');
         $this->frame('basefrm');
         $this->waitForItemDisappear("//head/meta[@http-equiv=Refresh]");
+
+        \OxidEsales\Eshop\Core\Registry::getLogger()->error($this->getHtmlSource());
+
         $this->frame("dynexport_do", false, false);
         $this->waitForText("Coupons export completed", false, 20);
         //$this->checkForErrors();
