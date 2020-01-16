@@ -840,7 +840,7 @@ class CreatingItemsAdminTest extends AdminTestCase
         $this->click("//input[@name='save' and @value='Export']", 'dynexport_do');
         sleep(5);
         $this->frame('edit');
-        Registry::getLogger()->error($this->getHtmlSource());
+        \OxidEsales\Eshop\Core\Registry::getLogger()->error($this->getHtmlSource());
 
         $this->frame("dynexport_do", false, false);
         $this->waitForText("Coupons export completed", false, 20);
