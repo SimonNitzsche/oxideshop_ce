@@ -825,10 +825,10 @@ class CreatingItemsAdminTest extends AdminTestCase
         $this->assertEquals("0", $this->getValue("voucherAmount"));
         $this->type("voucherNr", "222");
         $this->type("voucherAmount", "5");
-        $this->click("//input[@name='save' and @value='Generate']", 'dynexport_do');
-        sleep(5);
+        $this->clickAndWaitFrame("//input[@name='save' and @value='Generate']", 'dynexport_do');
+        $this->frame('basefrm');
+        $this->waitForItemDisappear("//head/meta[@http-equiv=Refresh]");
         $this->frame("dynexport_do", false, false);
-
         $this->waitForText("Coupons generation completed",false, 20);
         $this->checkForErrors();
         $this->assertEquals("5", $this->getText("//tr[2]/td[2]"));
@@ -836,12 +836,9 @@ class CreatingItemsAdminTest extends AdminTestCase
         $this->assertEquals("0", $this->getText("//tr[4]/td[2]"));
         $this->frame("edit");
         $this->checkForErrors();
-
-        $this->click("//input[@name='save' and @value='Export']", 'dynexport_do');
-        sleep(5);
-        $this->frame('edit');
-        \OxidEsales\Eshop\Core\Registry::getLogger()->error($this->getHtmlSource());
-
+        $this->clickAndWaitFrame("//input[@name='save' and @value='Export']", 'dynexport_do');
+        $this->frame('basefrm');
+        $this->waitForItemDisappear("//head/meta[@http-equiv=Refresh]");
         $this->frame("dynexport_do", false, false);
         $this->waitForText("Coupons export completed", false, 20);
         //$this->checkForErrors();
