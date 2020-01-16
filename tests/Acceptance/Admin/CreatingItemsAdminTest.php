@@ -839,7 +839,7 @@ class CreatingItemsAdminTest extends AdminTestCase
         $this->clickAndWaitFrame("//input[@name='save' and @value='Export']", 'dynexport_do');
         $this->frame('basefrm');
         $this->waitForItemDisappear("//head/meta[@http-equiv=Refresh]");
-
+        $this->frame('edit');
         \OxidEsales\Eshop\Core\Registry::getLogger()->error($this->getHtmlSource());
 
         $this->frame("dynexport_do", false, false);
